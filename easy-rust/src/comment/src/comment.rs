@@ -1,6 +1,6 @@
 /// documentation type comments ex, (Book으로 쓰는 타입이다.)
 struct Book;
-fn comment() {
+pub(crate) fn comment() {
     //  ( // ) mean is normal type comments
     println!("Hello, world!");
     /*중간에 넣을 수 있는 주석*/
