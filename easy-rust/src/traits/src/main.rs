@@ -1,11 +1,11 @@
 // traits // verbs / adjective
 // it's very similar interface
 
-use std::fmt::Display;
 
 struct Animal {
     name: String
 }
+
 
 trait Canine {
     fn bark(&self) {
@@ -26,10 +26,28 @@ impl Canine for Animal {
     }
 }
 
+use std::fmt::{Display, Formatter};
+
+struct Cat {
+    name: String,
+    age: u8
+}
+
+impl Display for Cat {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        write!(f, "({}, {})", self.name, self.age)
+    }
+}
+
 fn main() {
-    let animal = Animal {
-        name: "my_dog".to_string()
+    // let animal = Animal {
+    //     name: "my_dog".to_string()
+    // };
+    // animal.run();
+    // animal.bark();
+    let my_cat = Cat {
+        name: "cat".to_string(),
+        age: 10
     };
-    animal.run();
-    animal.bark();
+    println!("{my_cat}")
 }
