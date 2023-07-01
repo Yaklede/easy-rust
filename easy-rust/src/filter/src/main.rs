@@ -1,3 +1,4 @@
+use std::fmt::format;
 use std::vec;
 
 // filter
@@ -19,6 +20,8 @@ fn main() {
         .collect::<Vec<_>>();
 
     println!("{all_the_ceos:?}");
+
+    more_option_function();
 }
 
 struct Company {
@@ -42,4 +45,28 @@ impl Company {
     fn get_ceo(&self) -> Option<String> {
         self.ceo.clone()
     }
+}
+
+//example ok, ok_or, ok_or_else
+//ok - Result to Option
+//ok_else Option to Result
+//ok_or_else Option to Result with closure ||
+fn more_option_function() {
+    let company_vec = vec![
+        Company::new("Name A", "CEO A"),
+        Company::new("Name B", ""),
+        Company::new("Name C", "CEO C"),
+        Company::new("Name D", "")
+    ];
+    let mut result_vec = vec![];
+    company_vec
+        .iter()
+        .for_each(|company| {
+            result_vec.push(company.get_ceo().ok_or_else(|| {
+                let error_message = format!("No Ceo found for {}", company.name);
+                error_message
+            }))
+        });
+
+    println!("{result_vec:?}")
 }
