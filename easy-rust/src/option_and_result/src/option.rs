@@ -1,6 +1,5 @@
 
 use Option::*;
-
 fn take_fifth(value: Vec<i32>) -> Option<i32> {
     if value.len() < 5 {
         None
@@ -26,5 +25,13 @@ pub fn option() {
 
     if index.is_some() { // bool
         println!("I got a number : {}", index.unwrap())
+    }
+
+    let first_try = vec![Some("some"), None, Some("Som2"), Some("good")];
+    let second_try = vec![Some("some"), None, None, Some("good")];
+    let third_try = vec![None, None, Some("Som2"), Some("notGood")];
+
+    for index in 0..first_try.len() {
+        println!("{:?}", first_try[index].or(second_try[index].or(third_try[index])))
     }
 }

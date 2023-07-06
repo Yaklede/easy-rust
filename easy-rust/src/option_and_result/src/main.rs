@@ -13,8 +13,8 @@ enum Result<T,E> {
 mod option;
 mod result;
 fn main() {
-    // option::option()
-    result::result()
+    option::option()
+    // result::result();
 }
 
 
