@@ -6,28 +6,29 @@ fn main() {
     // .iter() - Iterator of references &T
     // .iter_mut() - Iterator of mutable references &mut T
     // .into_iter() - consuming iterator
-    let vector_1 = vec![1, 2, 3];
-    let vector_a = vector_1.iter().map(|x| x + 1).collect::<Vec<i32>>();
-    let vector_b: Vec<i32> = vector_1.into_iter().map(|x| x * 10).collect();
-
-    let mut vector2 = vec![10, 20, 30];
-    vector2.iter_mut().for_each(|num| *num += 100);
-
-    println!("{vector_a:?}");
-    println!("{vector_b:?}");
-    println!("{vector2:?}");
-    // println!("{vector_1:?}");
-    what_is_assert_eq();
-
-    let mut my_library = Library::new();
-    my_library.add_book("book");
-    my_library.add_book("other Book");
-
-    println!("{my_library:?}");
-
-    for item in my_library {
-        println!("{item}")
-    }
+    // let vector_1 = vec![1, 2, 3];
+    // let vector_a = vector_1.iter().map(|x| x + 1).collect::<Vec<i32>>();
+    // let vector_b: Vec<i32> = vector_1.into_iter().map(|x| x * 10).collect();
+    //
+    // let mut vector2 = vec![10, 20, 30];
+    // vector2.iter_mut().for_each(|num| *num += 100);
+    //
+    // println!("{vector_a:?}");
+    // println!("{vector_b:?}");
+    // println!("{vector2:?}");
+    // // println!("{vector_1:?}");
+    // what_is_assert_eq();
+    //
+    // let mut my_library = Library::new();
+    // my_library.add_book("book");
+    // my_library.add_book("other Book");
+    //
+    // println!("{my_library:?}");
+    //
+    // for item in my_library {
+    //     println!("{item}")
+    // }
+    map_and_than()
 }
 
 //it's very useful when you search the reference documentation
@@ -109,4 +110,25 @@ fn zip() {
         &"no number"
     });
     println!("result = {result_str}");
+}
+
+// map
+// and_than
+fn map_and_than() {
+    let some_output = Some(vec![1,2,3]);
+
+    let new_output= some_output
+        .clone()
+        .map(|some_vec| some_vec.iter().map(|num| num + 1).collect::<Vec<i32>>());
+
+
+    let output = new_output.clone().and_then(|some| match some.len() {
+        0 => None,
+        1 => Some(some),
+        _ => Some(some),
+    });
+
+
+    println!("{new_output:?}");
+    println!("{output:?}");
 }
